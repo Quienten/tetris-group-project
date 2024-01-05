@@ -1,7 +1,10 @@
 package model;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioSystem;
@@ -47,22 +50,30 @@ public class AudioPlayer implements Audio {
             getClips();
 
             final String audioFolder = "audio" + File.separator;
-            myClearLineSound.open(AudioSystem.getAudioInputStream(new File(audioFolder
-                    + "LineCleared.wav").
-                    getAbsoluteFile()));
+            myClearLineSound.open(AudioSystem.getAudioInputStream(
+                new BufferedInputStream(
+                    Objects.requireNonNull(getClass().getResourceAsStream("/LineCleared.wav"))
+                )
+            ));
 
-            myBackgroundMusic.open(AudioSystem.getAudioInputStream(new File(audioFolder
-                    + "Background.wav").
-                    getAbsoluteFile()));
+            myBackgroundMusic.open(AudioSystem.getAudioInputStream(
+                new BufferedInputStream(
+                    Objects.requireNonNull(getClass().getResourceAsStream("/Background.wav"))
+                )
+            ));
 
-            myLevelUpSound.open(AudioSystem.getAudioInputStream(new File(audioFolder
-                    + "LevelUp.Wav").
-                    getAbsoluteFile()));
+            myLevelUpSound.open(AudioSystem.getAudioInputStream(
+                new BufferedInputStream(
+                    Objects.requireNonNull(getClass().getResourceAsStream("/LevelUp.wav"))
+                )
+            ));
 
 
-            myGameOverSound.open(AudioSystem.getAudioInputStream(new File(audioFolder
-                    + "GameOver.wav").
-                    getAbsoluteFile()));
+            myGameOverSound.open(AudioSystem.getAudioInputStream(
+                new BufferedInputStream(
+                    Objects.requireNonNull(getClass().getResourceAsStream("/GameOver.wav"))
+                )
+            ));
         } catch (final LineUnavailableException
                        | UnsupportedAudioFileException | IOException e) {
             Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, e);

@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import model.Block;
@@ -109,11 +110,13 @@ public final class BoardPanel extends JPanel implements PropertyChangeListener, 
 
     private void loadResources() throws IOException {
         final String imagesFolder = "images" + File.separator;
-        mySplashScreenImage = ImageIO.read(new File(imagesFolder
-            + "TetrisTitleScreen.png"));
+        mySplashScreenImage = ImageIO.read(
+            Objects.requireNonNull(getClass().getResource("/TetrisTitleScreen.png"))
+        );
 
-        myGameBackground = ImageIO.read(new File(imagesFolder
-            + "GameBoardBackground.png"));
+        myGameBackground = ImageIO.read(
+            Objects.requireNonNull(getClass().getResource("/GameBoardBackground.png"))
+        );
     }
 
     //Java Swing doesn't use an interface for this method.

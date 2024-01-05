@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 import model.TetrisPiece;
 
@@ -116,7 +117,9 @@ public final class Themes {
         BufferedImage blockImg = null;
 
         try {
-            blockImg = ImageIO.read(new File(imagesFolder + fileName));
+            blockImg = ImageIO.read(
+                Objects.requireNonNull(Themes.class.getResource("/" + fileName))
+            );
         } catch (final IOException ignored) {
 
         }

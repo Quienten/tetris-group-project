@@ -17,6 +17,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import model.Point;
@@ -94,8 +95,9 @@ public final class NextPiecePanel extends JPanel implements PropertyChangeListen
 
     private void loadResources() throws IOException {
         final String imagesFolder = "images" + File.separator;
-        myBackground = ImageIO.read(new File(imagesFolder
-            + "GameBoardBackground.png"));
+        myBackground = ImageIO.read(
+            Objects.requireNonNull(getClass().getResource("/GameBoardBackground.png"))
+        );
     }
 
     //Java Swing doesn't use an interface for this method.

@@ -2,8 +2,10 @@ package view;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 
 /**
@@ -51,10 +53,14 @@ public class SpriteSheet implements Sprite {
 
         final String imagesFolder = "images" + File.separator;
 
-        try {
-            mySpriteSheet = ImageIO.read(new File(imagesFolder + theFileName + ".png"));
-        } catch (final IOException ignored) {
 
+
+        try {
+            mySpriteSheet = ImageIO.read(
+                Objects.requireNonNull(getClass().getResource("/" + theFileName + ".png"))
+            );
+        } catch (final IOException ignored) {
+            ignored.printStackTrace();
         }
     }
 
